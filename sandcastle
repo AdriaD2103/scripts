@@ -1,0 +1,62 @@
+local function Notify(...)
+    game.StarterGui:SetCore('SendNotification',...)
+end
+
+local library = loadstring(game:HttpGet(("https://pastebin.com/raw/FsJak6AT")))()
+
+local w = library:CreateWindow("Sandcastle Simulator")
+
+local b = w:CreateFolder("Main")
+
+local c1 = w:CreateFolder("Credits")
+
+b:Button("Treasure ESP",function()
+    for i,v in pairs(game.Workspace:GetDescendants()) do
+        if string.find(v.Name, "Treasure") or string.find(v.Name, "TreasureSmall") then
+            if v:IsA("Part") or v:IsA("MeshPart") then
+                if v.Name == "BoxHandleAdornment" then
+                    v:Destroy()
+                end
+                local funny = Instance.new("BoxHandleAdornment")
+                funny.Parent = v
+                funny.Adornee = v
+                funny.AlwaysOnTop = true
+                funny.Transparency = .7
+                funny.ZIndex = 0
+                funny.Size = v.size
+                funny.Color3 = Color3.fromRGB(0, 12, 255)
+            end
+        end
+    end
+end)
+
+b:Toggle("TP to treasures", function(bool)
+    treasuretp = bool
+end)
+
+b:Button("Get to sand", function()
+    local A_1 = "verifyAmt"
+    local A_2 = 999999999999999999999999999999
+    local A_3 = 999999999999999999999999999999
+    local Event = game:GetService("ReplicatedStorage").ThisGame.Calls.collectSand
+    Event:FireServer(A_1, A_2, A_3)
+end)
+
+c1:Button("AdriaD2103#0001", function()
+    setclipboard("AdriaD2103#0001")
+end)
+
+while wait() do
+    if treasuretp == true then
+        for i,v in pairs(game.Workspace:GetDescendants()) do
+            if string.find(v.Name, "Treasure") or string.find(v.Name, "TreasureSmall") then
+                for i1,v1 in pairs(v:GetChildren()) do
+                    if v1.Name == "TouchInterest" then
+                        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v1.Parent, 0)
+                        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v1.Parent, 1)
+                    end
+                end
+            end
+        end
+    end
+end
