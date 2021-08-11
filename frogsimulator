@@ -1,0 +1,41 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Frog Simulator")
+local a = w:CreateFolder("Main")
+local c1 = w:CreateFolder("Credits")
+
+a:Toggle("Catch", function(bool)
+    catch = bool
+end)
+
+a:Toggle("Sell", function(bool)
+    sell = bool
+end)
+
+a:Toggle("Get Map Gems", function(bool)
+    mapgems = bool
+end)
+
+c1:Button("AdriaD2103#0001", function()
+    setclipboard("AdriaD2103#0001")
+end)
+
+while wait() do
+    if catch == true then
+        local Event = game:GetService("ReplicatedStorage").NetActivation
+        Event:FireServer()
+        wait()
+    end
+    
+    if sell == true then
+        local Event = game:GetService("ReplicatedStorage").Sell
+        Event:FireServer()
+    end
+    if mapgems == true then
+        for i,v in pairs(game:GetService("Workspace").Gems:GetChildren()) do
+            if string.find(v.Name, "Gem1") or string.find(v.Name, "Gem2") then
+                v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            end    
+        end    
+    end
+end
+
